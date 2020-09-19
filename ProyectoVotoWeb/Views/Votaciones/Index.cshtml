@@ -1,0 +1,56 @@
+﻿@model IEnumerable<ProyectoVotoWeb.Models.tblVotaciones>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+    <div class="col-12">
+
+        <div class="card">
+            <div class="card-header bg-info">
+                <h1 class="text-center align-content-end">Votos</h1>
+            </div>
+
+            <div class="card-body">
+               
+                <table class="table table-responsive-lg table-active table-striped">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.NumVotos)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.IdRestaurante)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NumVotos)
+                                </td>
+                                <td>
+                                    @{ foreach (var valor in ViewBag.Restaurante)
+                                        {
+                                            @if (item.IdRestaurante == valor.IdRestaurante)
+                                            {
+                                                @valor.NombreRestaurante;
+                                            }
+                                        }
+
+                                    }
+                                </td>
+                                <td>
+                                  
+                                    <a asp-action="Delete" asp-route-id="@item.IdVoto" class="btn btn-danger">Eliminar</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>

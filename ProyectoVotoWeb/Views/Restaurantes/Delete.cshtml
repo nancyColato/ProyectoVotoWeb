@@ -1,0 +1,50 @@
+﻿@model ProyectoVotoWeb.Models.tblRestaurantes
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+    <div class="col-6 offset-3">
+        <div class="card">
+            <div class="card-header bg-danger">
+                <h5 class="card-title">Eliminar Restaurante</h5>
+            </div>
+            <div class="card-body">
+
+
+                <dl class="row">
+                    <dt class="col-sm-5 col-md-4">
+                        @Html.DisplayNameFor(model => model.NombreRestaurante)
+                    </dt>
+                    <dd class="col-sm-5">
+                        @Html.DisplayFor(model => model.NombreRestaurante)
+                    </dd>
+                    <dt class="col-sm-5 col-md-4">
+                        @Html.DisplayNameFor(model => model.Decripcion)
+                    </dt>
+                    <dd class="col-sm-5 ">
+                        @Html.DisplayFor(model => model.Decripcion)
+                    </dd>
+                    <dt class="col-sm-5 col-md-4">
+                        @Html.DisplayNameFor(model => model.Logo)
+                    </dt>
+                    <dd class="col-sm-5">
+                        @Html.DisplayFor(model => model.Logo)
+                    </dd>
+                    <dt class="col-sm-5 col-md-4">
+                        @Html.DisplayNameFor(model => model.ImgDestacada)
+                    </dt>
+                    <dd class="col-sm-5">
+                        @Html.DisplayFor(model => model.ImgDestacada)
+                    </dd>
+                </dl>
+
+                <form asp-action="Delete">
+                    <input type="hidden" asp-for="IdRestaurante" />
+                    <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+                    <a asp-action="Index" class="btn btn-warning">Regresar!</a>
+                </form>
+            </div>
+
+        </div>
+    </div>

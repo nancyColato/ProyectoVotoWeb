@@ -1,0 +1,52 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+    <div class="col-12">
+        <div class="text-center">
+            <h1 class="display-6">Votacion de Restaurantes</h1>
+            <pre>Selecciona a tu favorita y regalale tu voto</pre>
+            <br />
+            <div class="row">
+
+                @{
+                    foreach (var rest in ViewBag.Restaurantes)
+                    {
+                        <form method="post" asp-action="Index">
+                            <div class="card" style="width: 18rem;">
+
+                                <div class="card-header bg-info">
+                                    <h4 class="card-title">
+                                        @rest.NombreRestaurante
+                                    </h4>
+                                </div>
+
+
+                                <div class="card-body">
+                                    <img src="@rest.Logo" class="card-img-top" alt="Logo Restaurante" width="75" height="75">
+
+                                    <input type="text" hidden name="IdRestaurante" value="@rest.IdRestaurante" />
+                                    @foreach (var hor in ViewBag.Horarios)
+                                    {
+                                        if (rest.IdRestaurante == hor.IdRestaurante)
+                                        {
+                                            <p class="card-subtitle"> <b>@hor.Horario</b> <br /> <b><i>@hor.Dias</i></b> </p>
+                                        }
+                                        else
+                                        {
+                                            <p class="card-subtitle"> <br /> </p>
+                                        }
+                                    }
+                                    <p class="card-text">@rest.Decripcion</p>
+                                </div>
+
+                                <div class="card-footer">
+                                    <button type="submit" class="fas fa-hand-point-up btn btn-sm btn-outline-info" title="Votar">Votar</button>
+                                </div>
+                            </div>
+                        </form>
+                    }
+                }
+            </div>
+        </div>
+    </div>

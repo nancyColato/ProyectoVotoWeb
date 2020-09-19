@@ -1,0 +1,76 @@
+﻿@model IEnumerable<ProyectoVotoWeb.Models.tblHorarios>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+    <div class="col-12">
+
+        <div class="card">
+            <div class="card-header bg-warning">
+                <h1 class="text-center align-content-end">Horarios</h1>
+            </div>
+
+            <div class="card-body">
+                <p>
+                    <a asp-action="Create" class="btn btn-success">Agregar</a>
+                </p>
+                <table class="table table-responsive-lg table-active table-striped">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.HoraApertura)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.HoraCierre)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.DiaInicio)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.DiaFin)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.IdRestaurante)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.HoraApertura)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.HoraCierre)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DiaInicio)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DiaFin)
+                                </td>
+                                <td>
+                                    @foreach (var valor in ViewBag.Restaurante)
+                                        {
+                                            @if (item.IdRestaurante == valor.IdRestaurante)
+                                            {
+                                                @valor.NombreRestaurante;
+                                            }
+                                        }
+                                    
+                                </td>
+                                <td>
+                                    <a asp-action="Edit" asp-route-id="@item.IdHorario" class="btn btn-warning fa fa-edit">Editar</a> |
+                                    @* <a asp-action="Details" asp-route-id="@item.IdHorario" class="btn btn-info fa fa-edit">Detalles</a> |*@
+                                    <a asp-action="Delete" asp-route-id="@item.IdHorario" class="btn btn-danger fa fa-edit">Eliminar</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
